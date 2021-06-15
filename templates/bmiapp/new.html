@@ -1,0 +1,96 @@
+{% extends '../base.html' %}
+
+{% block header %}
+<title>BMI</title>
+{% endblock header %}
+
+{% block content %}
+<br>
+<div class="container">
+	<h1>BMI計算ツール</h1>
+	<br><br>
+<!--
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">計算</button>
+
+
+	</form>
+	<p>{{ tall }}</p>
+	<p>{{ weight }}</p>
+-->
+
+<form method="POST">{% csrf_token %}
+	<div class="row mb-3">
+	  <label for="inputtall" class="col-sm-2 col-form-label">身長（cm）</label>
+	  <div class="col-sm-10">
+		<input type="text" name="tall"  class="form-control" required id="id_tall" value='{{ tall }}'>
+	  </div>
+	</div>
+	<div class="row mb-3">
+	  <label for="inputtall" class="col-sm-2 col-form-label">体重（kg）</label>
+	  <div class="col-sm-10">
+		<input type="text" class="form-control" id="inputPassword3" name="weight" required id="id_weight" value='{{ weight }}'>
+	  </div>
+	
+	</div>
+	<div class="d-grid gap-2">
+		<button type="submit" class="btn btn-outline-secondary">計算</button>
+	</div>
+  </form>
+
+<br><br>
+
+	<h2><center>{{ answer }}</center></h2>
+<br><br><br>
+<h3>肥満度判定基準</h3>
+
+
+
+<table class="table">
+	<thead>
+		<tr>
+		  <th scope="col">判定</th>
+		  <th scope="col">BMI</th>
+		  <th scope="col">あなたの場合（kg）</th>
+		</tr>
+	  </thead>
+	<tbody>
+		<tr>
+			<td>低体重</td>
+			<td>BMI ＜ 18.5</td>
+			<td>{{ BMI1 }} </td>
+		  </tr>
+		  <tr>
+			<td>普通体重</td>
+			<td>18.5 ≦ BMI ＜ 25</td>
+			<td>{{ BMI2 }}</td>
+		  </tr>
+			<td>肥満1度</td>
+			<td>25 ≦ BMI ＜ 30</td>
+			<td>{{ BMI3 }}</td>
+		  </tr>
+		  <tr>
+			<td>肥満2度</td>
+			<td>30 ≦ BMI ＜ 35</td>
+			<td>{{ BMI4 }}</td>
+		  </tr>
+		  <tr>
+			<td>肥満3度</td>
+			<td>35 ≦ BMI ＜ 40</td>
+			<td>{{ BMI5 }}</td>
+		  </tr>
+		  <tr>
+			<td>肥満4度</td>
+			<td>40 ≦ BMI</td>
+			<td>{{ BMI6 }}</td>
+		  </tr>
+	</tbody>
+  </table>
+
+
+
+
+</div>
+{% endblock content %}
